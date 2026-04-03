@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel-Cristian Avramut - Azure DevOps Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #0078D4;
+            --primary-dark: #005a9e;
+            --primary-light: #e8f3fc;
+            --accent: #00b4d8;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #6b6b6b;
+            --bg-light: #f7f9fc;
+            --border: #dde3ec;
+            --shadow: rgba(0, 120, 212, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 10pt;
+            line-height: 1.55;
+            color: var(--text-dark);
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 12mm 15mm;
+            background: white;
+        }
+
+        @media print {
+            body { padding: 8mm 12mm; }
+            @page { margin: 8mm; }
+            .skill-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        /* Header */
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 2px;
+        }
+
+        .header-left h1 {
+            font-size: 26pt;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+            line-height: 1.1;
+        }
+
+        .header-left .title {
+            font-size: 10.5pt;
+            font-weight: 500;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 9.5pt;
+            color: var(--text-medium);
+            line-height: 1.85;
+        }
+
+        .header-right div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+        }
+
+        .header-right div::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .header-right a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Section Titles */
+        h2 {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            padding-bottom: 7px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+        }
+
+        section {
+            margin-bottom: 18px;
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 10pt;
+            color: var(--text-medium);
+            text-align: justify;
+            line-height: 1.65;
+            padding: 12px 14px;
+            background: var(--primary-light);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .summary strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Skills Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .skill-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 11px 13px;
+            border-radius: 7px;
+            box-shadow: 0 2px 8px var(--shadow);
+            transition: transform 0.15s;
+        }
+
+        .skill-box h4 {
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            opacity: 1;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 4px;
+        }
+
+        .skill-box p {
+            font-size: 8.5pt;
+            line-height: 1.45;
+            opacity: 0.92;
+            font-weight: 400;
+        }
+
+        /* Technical Skills */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px 30px;
+        }
+
+        .tech-item {
+            display: flex;
+            font-size: 9.5pt;
+            padding: 4px 0;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        .tech-item .label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .tech-item .value {
+            color: var(--text-medium);
+        }
+
+        /* Experience */
+        .job {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .job:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .job-header h3 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .job-header .date {
+            font-size: 8.5pt;
+            color: white;
+            font-weight: 500;
+            background: var(--primary);
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .job-company {
+            font-size: 10pt;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .job-company span {
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        .job-section {
+            margin-bottom: 8px;
+        }
+
+        .job-section h4 {
+            font-size: 9pt;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .job-section h4::before {
+            content: "";
+            width: 3px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        ul {
+            margin-left: 16px;
+        }
+
+        li {
+            font-size: 9.5pt;
+            color: var(--text-medium);
+            margin-bottom: 3px;
+            text-align: justify;
+        }
+
+        li strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        /* Education */
+        .education-block h4 {
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .education-block .school {
+            font-size: 9.5pt;
+            color: var(--primary);
+            font-style: italic;
+            margin-bottom: 3px;
+        }
+
+        .education-block p {
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        /* Additional */
+        .additional ul {
+            margin-left: 14px;
+        }
+
+        .additional li {
+            font-size: 9pt;
+            margin-bottom: 4px;
+        }
+
+        /* Compact list for job bullets */
+        .compact-list {
+            margin-left: 0;
+            list-style: none;
+        }
+
+        .compact-list li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 5px;
+        }
+
+        .compact-list li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 12pt;
+            line-height: 1.2;
+        }
+
+        /* Highlight tags */
+        .tag {
+            display: inline;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <h1>Daniel-Cristian Avramut</h1>
+            <div class="title">Senior Azure DevOps Engineer</div>
+        </div>
+        <div class="header-right">
+            <div>+40 741 640 401</div>
+            <div><a href="mailto:daniel.avramut@smartechcs.com">daniel.avramut@smartechcs.com</a></div>
+            <div>Cluj-Napoca, Romania</div>
+            <div>English (Fluent) | Romanian (Native)</div>
+        </div>
+    </header>
+
+    <section>
+        <h2>Professional Summary</h2>
+        <p class="summary">
+            Results-driven Azure DevOps &amp; Cloud Engineer with <strong>7+ years of experience</strong> designing, implementing, and optimizing cloud-native infrastructure solutions. Expert in <strong>Terraform-based Infrastructure as Code</strong> for complex multi-environment Azure deployments. Proven track record building robust <strong>CI/CD pipelines</strong> with Azure DevOps and GitHub Actions, implementing <strong>Security by Design</strong> principles, and managing <strong>Entra ID identity security</strong> including Conditional Access Policies across multi-tenant environments. <strong>Focused experience in Cloud Security</strong> (Entra ID Conditional Access, Privileged Identity Management), with deep expertise in CAP lifecycle management — from policy design and troubleshooting to operational transitions between teams. Strong background in networking, security compliance, and cost optimization. Demonstrated leadership with experience mentoring teams and driving DevOps culture.
+        </p>
+    </section>
+
+    <section>
+        <h2>Core Competencies</h2>
+        <div class="skills-container">
+            <div class="skill-box">
+                <h4>Infrastructure as Code</h4>
+                <p>Terraform, Terragrunt, Bicep, ARM Templates,Ansible</p>
+            </div>
+            <div class="skill-box">
+                <h4>CI/CD & Automation</h4>
+                <p>Azure DevOps Pipelines, GitHub Actions, Python, Bash, PowerShell, Azure CLI</p>
+            </div>
+            <div class="skill-box">
+                <h4>Security & Compliance</h4>
+                <p>Entra ID, Azure Key Vault, RBAC, PIM, Conditional Access Policies, MFA, Azure Policy, IaC and Pipeline Security ( Checkov, Terratest, SonarQube )</p>
+            </div>
+            <div class="skill-box">
+                <h4>Observability</h4>
+                <p>Azure Monitor, Log Analytics, Application Insights, Prometheus, Grafana, Alerting</p>
+            </div>
+            <div class="skill-box">
+                <h4>Networking & Security</h4>
+                <p>VNets, NSGs, VPN Gateway, Azure Firewall, ExpressRoute, Load Balancers, TLS</p>
+            </div>
+            <div class="skill-box">
+                <h4>Containers & Compute</h4>
+                <p>Azure Kubernetes Service (AKS), Container Instances, ACR, VMs, App Services</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Technical Skills</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <span class="label">IaC</span>
+                <span class="value">Terraform (Expert), Terragrunt, Bicep, ARM Templates</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">CI/CD</span>
+                <span class="value">Azure DevOps (YAML), GitHub Actions, Jenkins</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">Scripting</span>
+                <span class="value">Bash, Python, PowerShell, Azure CLI</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">Security</span>
+                <span class="value">Entra ID, Conditional Access, Key Vault, RBAC, PIM, OAuth 2.0, SAML</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">Monitoring</span>
+                <span class="value">Azure Monitor, Log Analytics, App Insights</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">Networking</span>
+                <span class="value">VNets, NSGs, VPN, Firewall, ExpressRoute</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">Containers</span>
+                <span class="value">AKS, Container Instances, Container Registry</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">AI/ML</span>
+                <span class="value">Azure OpenAI Service, Cognitive Search, Azure AI Foundry</span>
+            </div>
+            <div class="tech-item">
+                <span class="label">Compute</span>
+                <span class="value">Azure Virtual Machines, Azure App Services, Azure Functions</span>
+            </div>
+                <div class="tech-item">
+                <span class="label">Virtualization</span>
+                <span class="value">Azure Virtual Desktop,Citrix,VMware</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Professional Experience</h2>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>DevOps Consultant | Azure Cloud Engineer </h3>
+                <span class="date">June 2023 – Present</span>
+            </div>
+            <div class="job-company">Uniqa IT Services Wien <span>| B2B Contractor</span></div>
+
+            <ul class="compact-list">
+                <li>Architect and maintain complex Azure environments using <strong>Terraform and Terragrunt</strong>, managing VNets, NSGs, VPN across multi-environment setups (dev/staging/prod)</li>
+                <li>Integrate automated testing with <strong>Checkov, Terratest, and SonarQube</strong> ensuring secure, compliant infrastructure code</li>
+                <li>Design and optimize <strong>Azure DevOps and GitHub Actions</strong> pipelines for streamlined CI/CD delivery</li>
+                <li>Manage <strong>Azure Key Vault</strong> with secret rotation; configure <strong>RBAC and PIM</strong> for least-privilege access</li>
+                <li>Develop <strong>Terraform modules</strong> for automated management of <strong>Entra ID Conditional Access Policies</strong> across multiple tenants; implement MFA, Named Locations, and Sign-in Risk conditions; enforce compliance via Azure Policy and Blueprints</li>
+                <li>Lead the <strong>operational transition of Conditional Access Policy management</strong> from DevOps to Cyber Security team: audit existing policies, author runbooks and handover documentation, conduct knowledge-transfer sessions, and ensure zero-disruption cutover</li>
+                <li>Perform ongoing <strong>CAP maintenance</strong>: troubleshoot access failures, implement new policies aligned with evolving security requirements, and continuously improve existing policies based on sign-in risk analytics</li>
+                <li>Lead monitoring with <strong>Azure Monitor, Log Analytics, and App Insights</strong>; configure alerting for 24/7 service health</li>
+                <li>Design and implement an automated <strong>Landing Zone provisioning tool</strong> in Azure covering end-to-end onboarding: Subscription Creation, Azure DevOps Project Creation with security groups, <strong>Identity &amp; Access Management</strong> via Terraform Modules, SPN Creation, Key Vault setup, Firewall Rules implementation, and integrated security scanning with <strong>SonarQube and Checkov</strong></li>
+                <li>Architect and deliver an <strong>Azure Virtual Desktop (AVD)</strong> solution — including infrastructure design, full deployment, and end-to-end automation of provisioning and scaling workflows</li>
+                <li>Support <strong>Data Management</strong> initiatives by provisioning and managing infrastructure for <strong>Azure Data Factory</strong> and <strong>Azure Databricks</strong> pipelines, ensuring secure networking, RBAC, and CI/CD integration for data workloads</li>
+                <li>Implement <strong>multi-environment deployments</strong> using <strong>Terragrunt</strong> for consistent, DRY infrastructure management across dev/staging/prod</li>
+                <li>Create technical documentation and <strong>Root Cause Analysis (RCA)</strong> reports for incident resolution</li>
+                <li>Collaborate with development teams to integrate CI/CD best practices into SDLC</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>DevOps Engineer / Team Lead</h3>
+                <span class="date">November 2020 – June 2023</span>
+            </div>
+            <div class="job-company">Archive360</div>
+
+            <ul class="compact-list">
+                <li>Orchestrated Azure deployments using <strong>Bicep and ARM Templates</strong> for diverse client requirements, including <strong>Azure AD / Entra ID</strong> policy configurations and identity governance</li>
+                <li>Conducted <strong>capacity planning and cost optimization</strong> for efficient Azure SKU utilization</li>
+                <li>Designed <strong>Azure DevOps YAML pipelines</strong>; deployed and managed <strong>AKS clusters</strong> for containerized apps</li>
+                <li>Managed <strong>Azure Policy and Blueprints</strong> for compliance and governance</li>
+                <li>Implemented <strong>Azure Backup</strong> with Recovery Services Vaults for geo-redundant disaster recovery</li>
+                <li>Managed <strong>incident response within SLAs (P1-P4)</strong>; led stakeholder communications during outages</li>
+                <li>Promoted to <strong>Team Lead</strong> (Sept 2022), leading and mentoring a team of 7 engineers</li>
+
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>DevOps Engineer</h3>
+                <span class="date">September 2018 – October 2020</span>
+            </div>
+            <div class="job-company">Endava</div>
+
+            <ul class="compact-list">
+                <li>Executed <strong>IaaS to PaaS migrations</strong> including Sitecore, reducing operational overhead significantly</li>
+                <li>Built CI/CD pipelines using <strong>Jenkins and Azure DevOps</strong> for efficient software delivery</li>
+                <li>Delivered end-to-end solutions using Azure IaaS/PaaS ensuring scalable, resilient architecture</li>
+                <li>Managed <strong>Azure Monitor and Log Analytics</strong> for performance and reliability management</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div class="two-col">
+            <div>
+                <h2>Education</h2>
+                <div class="education-block">
+                    <h4>Technical University of Cluj-Napoca</h4>
+                    <div class="school">Faculty of Electronics, Telecommunications & IT</div>
+                    <p>Networking, Programming (C/C++, C#, Java), Telecommunications</p>
+                </div>
+            </div>
+            <div class="additional">
+                <h2>Additional</h2>
+                <ul>
+                    <li><strong>DevOps Internship</strong> – Endava (2018): AWS, Git, Jenkins, Bash</li>
+                    <li><strong>Azure AI:</strong> Azure OpenAI Service, Cognitive Search</li>
+                    <li>Strong problem-solving and troubleshooting expertise</li>
+                    <li>Technical documentation and RCA report experience</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
